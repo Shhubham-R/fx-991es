@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Casio FX-991ES Plus 2nd Edition Emulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Pixel-perfect Casio FX-991ES Plus 2nd Edition scientific calculator emulator">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator" id="calculator">
+            <!-- Top Brand Section -->
+            <div class="calculator-top">
+                <div class="solar-panel">
+                    <div class="solar-cell"></div>
+                    <div class="solar-cell"></div>
+                    <div class="solar-cell"></div>
+                    <div class="solar-cell"></div>
+                </div>
+                <div class="brand-section">
+                    <div class="brand-casio">CASIO</div>
+                    <div class="brand-model">fx-991ES PLUS</div>
+                    <div class="brand-edition">2nd Edition</div>
+                    <div class="brand-features">
+                        <span>NATURAL V.P.A.M.</span>
+                        <span>417 FUNCTIONS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display -->
+            <div class="display-frame">
+                <div class="display" id="display">
+                    <div class="display-indicators" id="indicators">
+                        <span class="indicator" data-ind="S" id="ind-S">S</span>
+                        <span class="indicator" data-ind="A" id="ind-A">A</span>
+                        <span class="indicator" data-ind="M" id="ind-M">M</span>
+                        <span class="indicator" data-ind="STO" id="ind-STO">STO</span>
+                        <span class="indicator" data-ind="RCL" id="ind-RCL">RCL</span>
+                        <span class="indicator" data-ind="STAT" id="ind-STAT">STAT</span>
+                        <span class="indicator" data-ind="CMPLX" id="ind-CMPLX">CMPLX</span>
+                        <span class="indicator" data-ind="MAT" id="ind-MAT">MAT</span>
+                        <span class="indicator" data-ind="VCT" id="ind-VCT">VCT</span>
+                        <span class="indicator" data-ind="D" id="ind-D">D</span>
+                        <span class="indicator" data-ind="R" id="ind-R">R</span>
+                        <span class="indicator" data-ind="G" id="ind-G">G</span>
+                        <span class="indicator" data-ind="FIX" id="ind-FIX">FIX</span>
+                        <span class="indicator" data-ind="SCI" id="ind-SCI">SCI</span>
+                        <span class="indicator" data-ind="Math" id="ind-Math">Math</span>
+                        <span class="indicator" data-ind="▸" id="ind-ARROW">▸</span>
+                        <span class="indicator" data-ind="Disp" id="ind-Disp">Disp</span>
+                    </div>
+                    <div class="display-content">
+                        <div class="display-expression" id="display-expression"></div>
+                        <div class="display-result" id="display-result">0</div>
+                    </div>
+                    <div class="display-cursor" id="display-cursor"></div>
+                </div>
+            </div>
+
+            <!-- Keypad -->
+            <div class="keypad">
+                <!-- Row 1 -->
+                <div class="key-row">
+                    <button class="key key-orange" data-key="SHIFT" data-alt="SETUP">
+                        <span class="key-label">SHIFT</span>
+                    </button>
+                    <button class="key key-blue" data-key="ALPHA" data-alt="CALC">
+                        <span class="key-label">ALPHA</span>
+                    </button>
+                    <button class="key key-gray" data-key="MODE" data-alt="SETUP">
+                        <span class="key-alt-shift">SETUP</span>
+                        <span class="key-label">MODE</span>
+                    </button>
+                    <button class="key key-gray" data-key="ON">
+                        <span class="key-label">ON</span>
+                    </button>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="CALC" data-alt="CMPLX">
+                        <span class="key-alt-shift">CMPLX</span>
+                        <span class="key-label">CALC</span>
+                    </button>
+                    <button class="key key-gray" data-key="INTEGRAL">
+                        <span class="key-alt-shift">∫dx</span>
+                        <span class="key-label">∫</span>
+                    </button>
+                    <button class="key key-gray" data-key="DERIVATIVE">
+                        <span class="key-alt-shift">d/dx</span>
+                        <span class="key-label">d/dx</span>
+                    </button>
+                    <button class="key key-gray" data-key="SOLVE">
+                        <span class="key-alt-shift">SOLVE</span>
+                        <span class="key-label">=</span>
+                    </button>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="POL">
+                        <span class="key-alt-shift">Pol(</span>
+                        <span class="key-label">Pol</span>
+                    </button>
+                    <button class="key key-gray" data-key="REC">
+                        <span class="key-alt-shift">Rec(</span>
+                        <span class="key-label">Rec</span>
+                    </button>
+                    <button class="key key-gray" data-key="FACT">
+                        <span class="key-alt-shift">FACT</span>
+                        <span class="key-label">x!</span>
+                    </button>
+                    <button class="key key-gray" data-key="COMB">
+                        <span class="key-alt-shift">nCr</span>
+                        <span class="key-label">nPr</span>
+                    </button>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="MATRIX">
+                        <span class="key-alt-shift">MATRIX</span>
+                        <span class="key-label">MATRIX</span>
+                    </button>
+                    <button class="key key-gray" data-key="VECTOR">
+                        <span class="key-alt-shift">VECTOR</span>
+                        <span class="key-label">VECTOR</span>
+                    </button>
+                    <button class="key key-gray" data-key="STAT">
+                        <span class="key-alt-shift">STAT</span>
+                        <span class="key-label">STAT</span>
+                    </button>
+                    <button class="key key-gray" data-key="TABLE">
+                        <span class="key-alt-shift">TABLE</span>
+                        <span class="key-label">TABLE</span>
+                    </button>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="key-row">
+                    <button class="key key-white" data-key="7">
+                        <span class="key-alt-alpha">A</span>
+                        <span class="key-label">7</span>
+                    </button>
+                    <button class="key key-white" data-key="8">
+                        <span class="key-alt-alpha">B</span>
+                        <span class="key-label">8</span>
+                    </button>
+                    <button class="key key-white" data-key="9">
+                        <span class="key-alt-alpha">C</span>
+                        <span class="key-label">9</span>
+                    </button>
+                    <button class="key key-white" data-key="DEL">
+                        <span class="key-alt-shift">INS</span>
+                        <span class="key-label">DEL</span>
+                    </button>
+                    <button class="key key-orange" data-key="AC">
+                        <span class="key-label">AC</span>
+                    </button>
+                </div>
+
+                <!-- Row 6 -->
+                <div class="key-row">
+                    <button class="key key-white" data-key="4">
+                        <span class="key-alt-alpha">D</span>
+                        <span class="key-label">4</span>
+                    </button>
+                    <button class="key key-white" data-key="5">
+                        <span class="key-alt-alpha">E</span>
+                        <span class="key-label">5</span>
+                    </button>
+                    <button class="key key-white" data-key="6">
+                        <span class="key-alt-alpha">F</span>
+                        <span class="key-label">6</span>
+                    </button>
+                    <button class="key key-white" data-key="MULTIPLY">×</button>
+                    <button class="key key-white" data-key="DIVIDE">÷</button>
+                </div>
+
+                <!-- Row 7 -->
+                <div class="key-row">
+                    <button class="key key-white" data-key="1">
+                        <span class="key-alt-alpha">X</span>
+                        <span class="key-label">1</span>
+                    </button>
+                    <button class="key key-white" data-key="2">
+                        <span class="key-alt-alpha">Y</span>
+                        <span class="key-label">2</span>
+                    </button>
+                    <button class="key key-white" data-key="3">
+                        <span class="key-alt-alpha">M</span>
+                        <span class="key-label">3</span>
+                    </button>
+                    <button class="key key-white" data-key="PLUS">+</button>
+                    <button class="key key-white" data-key="MINUS">−</button>
+                </div>
+
+                <!-- Row 8 -->
+                <div class="key-row">
+                    <button class="key key-white" data-key="0">
+                        <span class="key-label">0</span>
+                    </button>
+                    <button class="key key-white" data-key="DOT">.</button>
+                    <button class="key key-white" data-key="EXP">
+                        <span class="key-label">×10ˣ</span>
+                    </button>
+                    <button class="key key-white" data-key="ANS">
+                        <span class="key-alt-alpha">Ans</span>
+                        <span class="key-label">Ans</span>
+                    </button>
+                    <button class="key key-white" data-key="EQUALS">=</button>
+                </div>
+
+                <!-- Row 9 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="FRACTION">
+                        <span class="key-alt-shift">aᵇ/c</span>
+                        <span class="key-label">ab/c</span>
+                    </button>
+                    <button class="key key-gray" data-key="SQRT">
+                        <span class="key-alt-shift">³√</span>
+                        <span class="key-label">√</span>
+                    </button>
+                    <button class="key key-gray" data-key="SQUARE">
+                        <span class="key-alt-shift">x³</span>
+                        <span class="key-label">x²</span>
+                    </button>
+                    <button class="key key-gray" data-key="POWER">
+                        <span class="key-alt-shift">x√</span>
+                        <span class="key-label">^</span>
+                    </button>
+                    <button class="key key-gray" data-key="LOG">
+                        <span class="key-alt-shift">10ˣ</span>
+                        <span class="key-label">log</span>
+                    </button>
+                    <button class="key key-gray" data-key="LN">
+                        <span class="key-alt-shift">eˣ</span>
+                        <span class="key-label">ln</span>
+                    </button>
+                </div>
+
+                <!-- Row 10 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="SIN">
+                        <span class="key-alt-shift">sin⁻¹</span>
+                        <span class="key-label">sin</span>
+                    </button>
+                    <button class="key key-gray" data-key="COS">
+                        <span class="key-alt-shift">cos⁻¹</span>
+                        <span class="key-label">cos</span>
+                    </button>
+                    <button class="key key-gray" data-key="TAN">
+                        <span class="key-alt-shift">tan⁻¹</span>
+                        <span class="key-label">tan</span>
+                    </button>
+                    <button class="key key-gray" data-key="STO">
+                        <span class="key-alt-shift">RCL</span>
+                        <span class="key-label">STO</span>
+                    </button>
+                    <button class="key key-gray" data-key="ENG">
+                        <span class="key-alt-shift">ENG←</span>
+                        <span class="key-label">ENG</span>
+                    </button>
+                    <button class="key key-gray" data-key="SD">
+                        <span class="key-alt-shift">d/c</span>
+                        <span class="key-label">S⇔D</span>
+                    </button>
+                </div>
+
+                <!-- Row 11 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="CONST">
+                        <span class="key-alt-shift">CONST</span>
+                        <span class="key-label">CONST</span>
+                    </button>
+                    <button class="key key-gray" data-key="CONV">
+                        <span class="key-alt-shift">CONV</span>
+                        <span class="key-label">CONV</span>
+                    </button>
+                    <button class="key key-gray" data-key="PAREN_OPEN">(</button>
+                    <button class="key key-gray" data-key="PAREN_CLOSE">)</button>
+                    <button class="key key-gray" data-key="SD_TOGGLE">
+                        <span class="key-label">%</span>
+                    </button>
+                    <button class="key key-gray" data-key="M_MINUS">
+                        <span class="key-label">M−</span>
+                    </button>
+                </div>
+
+                <!-- Row 12 -->
+                <div class="key-row">
+                    <button class="key key-gray" data-key="CURSOR_UP">
+                        <span class="key-label">▲</span>
+                    </button>
+                    <button class="key key-gray" data-key="CURSOR_LEFT">
+                        <span class="key-label">◀</span>
+                    </button>
+                    <button class="key key-gray" data-key="CURSOR_CENTER">
+                        <span class="key-label">REPLAY</span>
+                    </button>
+                    <button class="key key-gray" data-key="CURSOR_RIGHT">
+                        <span class="key-label">▶</span>
+                    </button>
+                    <button class="key key-gray" data-key="CURSOR_DOWN">
+                        <span class="key-label">▼</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="calculator-bottom">
+                <div class="model-number">FX-991ES PLUS 2</div>
+            </div>
+        </div>
+
+        <!-- Mode Menu (Hidden by default) -->
+        <div class="mode-menu" id="mode-menu">
+            <div class="mode-menu-content">
+                <div class="mode-menu-title">MODE</div>
+                <div class="mode-menu-options">
+                    <div class="mode-option" data-mode="1">1: COMP</div>
+                    <div class="mode-option" data-mode="2">2: CMPLX</div>
+                    <div class="mode-option" data-mode="3">3: STAT</div>
+                    <div class="mode-option" data-mode="4">4: BASE-N</div>
+                    <div class="mode-option" data-mode="5">5: EQN</div>
+                    <div class="mode-option" data-mode="6">6: MATRIX</div>
+                    <div class="mode-option" data-mode="7">7: TABLE</div>
+                    <div class="mode-option" data-mode="8">8: VECTOR</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setup Menu -->
+        <div class="setup-menu" id="setup-menu">
+            <div class="setup-menu-content">
+                <div class="setup-menu-title">SETUP</div>
+                <div class="setup-menu-options" id="setup-options">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>

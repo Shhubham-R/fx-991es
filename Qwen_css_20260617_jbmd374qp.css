@@ -1,0 +1,520 @@
+/* Casio FX-991ES Plus 2nd Edition Emulator Styles */
+/* Pixel-perfect recreation based on actual device specifications */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    /* Calculator body colors */
+    --body-bg: #2a2a2a;
+    --body-dark: #1f1f1f;
+    --body-light: #3a3a3a;
+    
+    /* Display colors */
+    --lcd-bg: #9bbc8f;
+    --lcd-pixel-on: #0f380f;
+    --lcd-pixel-off: #8bac0f;
+    --lcd-border: #1a1a1a;
+    
+    /* Key colors */
+    --key-white-bg: #f5f5f5;
+    --key-white-bg-pressed: #d5d5d5;
+    --key-white-text: #000;
+    
+    --key-gray-bg: #4a4a4a;
+    --key-gray-bg-pressed: #3a3a3a;
+    --key-gray-text: #fff;
+    
+    --key-orange-bg: #e85d00;
+    --key-orange-bg-pressed: #c84d00;
+    --key-orange-text: #fff;
+    
+    --key-blue-bg: #1a4d8a;
+    --key-blue-bg-pressed: #0f3d6a;
+    --key-blue-text: #fff;
+    
+    /* Key label colors */
+    --label-shift: #f5a623;
+    --label-alpha: #e02020;
+    --label-primary: #fff;
+    
+    /* Dimensions (scaled for web) */
+    --calc-width: 320px;
+    --calc-height: 670px;
+    --key-size: 42px;
+    --key-radius: 4px;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+}
+
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Calculator Body */
+.calculator {
+    width: var(--calc-width);
+    background: var(--body-bg);
+    border-radius: 12px 12px 8px 8px;
+    padding: 12px 10px 15px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    user-select: none;
+}
+
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    border-radius: 12px 12px 0 0;
+}
+
+/* Top Section */
+.calculator-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding: 0 5px;
+}
+
+.solar-panel {
+    display: flex;
+    gap: 2px;
+    background: #1a1a1a;
+    padding: 4px;
+    border-radius: 3px;
+    border: 1px solid #333;
+}
+
+.solar-cell {
+    width: 18px;
+    height: 22px;
+    background: linear-gradient(180deg, #2a3a4a 0%, #1a2a3a 50%, #2a3a4a 100%);
+    border-radius: 1px;
+    box-shadow: inset 0 0 5px rgba(0, 100, 150, 0.3);
+}
+
+.brand-section {
+    text-align: right;
+}
+
+.brand-casio {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.brand-model {
+    font-size: 11px;
+    color: #ccc;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+}
+
+.brand-edition {
+    font-size: 8px;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.brand-features {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.brand-features span {
+    font-size: 6px;
+    color: #666;
+    background: #333;
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Display Frame */
+.display-frame {
+    background: var(--lcd-border);
+    padding: 6px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.display {
+    background: var(--lcd-bg);
+    height: 68px;
+    border-radius: 3px;
+    padding: 4px 6px;
+    position: relative;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+
+/* Display Indicators */
+.display-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 6px;
+    margin-bottom: 4px;
+    height: 12px;
+}
+
+.indicator {
+    font-size: 8px;
+    color: var(--lcd-pixel-off);
+    opacity: 0.3;
+    transition: opacity 0.1s;
+}
+
+.indicator.active {
+    color: var(--lcd-pixel-on);
+    opacity: 1;
+}
+
+/* Display Content */
+.display-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 48px;
+}
+
+.display-expression {
+    font-size: 14px;
+    color: var(--lcd-pixel-on);
+    min-height: 18px;
+    word-wrap: break-word;
+    word-break: break-all;
+    max-height: 36px;
+    overflow: hidden;
+    text-align: right;
+}
+
+.display-result {
+    font-size: 20px;
+    color: var(--lcd-pixel-on);
+    font-weight: bold;
+    text-align: right;
+    min-height: 24px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.display-cursor {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    width: 2px;
+    height: 16px;
+    background: var(--lcd-pixel-on);
+    animation: blink 0.5s infinite;
+    display: none;
+}
+
+.display-cursor.visible {
+    display: block;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Error Display */
+.display.error .display-result {
+    color: var(--lcd-pixel-on);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+}
+
+/* Keypad */
+.keypad {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Keys */
+.key {
+    width: var(--key-size);
+    height: var(--key-size);
+    border: none;
+    border-radius: var(--key-radius);
+    cursor: pointer;
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.05s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+        0 2px 0 rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.key:active, .key.pressed {
+    transform: translateY(2px);
+    box-shadow: 
+        0 0 0 rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.key-label {
+    font-size: 14px;
+    z-index: 1;
+}
+
+.key-alt-shift {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 8px;
+    color: var(--label-shift);
+}
+
+.key-alt-alpha {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 8px;
+    color: var(--label-alpha);
+}
+
+/* Key Colors */
+.key-white {
+    background: var(--key-white-bg);
+    color: var(--key-white-text);
+}
+
+.key-white:active, .key-white.pressed {
+    background: var(--key-white-bg-pressed);
+}
+
+.key-gray {
+    background: var(--key-gray-bg);
+    color: var(--key-gray-text);
+}
+
+.key-gray:active, .key-gray.pressed {
+    background: var(--key-gray-bg-pressed);
+}
+
+.key-orange {
+    background: var(--key-orange-bg);
+    color: var(--key-orange-text);
+}
+
+.key-orange:active, .key-orange.pressed {
+    background: var(--key-orange-bg-pressed);
+}
+
+.key-blue {
+    background: var(--key-blue-bg);
+    color: var(--key-blue-text);
+}
+
+.key-blue:active, .key-blue.pressed {
+    background: var(--key-blue-bg-pressed);
+}
+
+/* Special key sizes */
+.key-row:nth-child(5) .key,
+.key-row:nth-child(6) .key,
+.key-row:nth-child(7) .key,
+.key-row:nth-child(8) .key {
+    width: 46px;
+}
+
+.key-row:nth-child(8) .key:last-child {
+    width: 52px;
+}
+
+/* Bottom */
+.calculator-bottom {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.model-number {
+    font-size: 8px;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+/* Mode Menu */
+.mode-menu, .setup-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.mode-menu.show, .setup-menu.show {
+    display: flex;
+}
+
+.mode-menu-content, .setup-menu-content {
+    background: var(--lcd-bg);
+    padding: 15px;
+    border-radius: 5px;
+    min-width: 200px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.mode-menu-title, .setup-menu-title {
+    font-size: 12px;
+    color: var(--lcd-pixel-on);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--lcd-pixel-on);
+    padding-bottom: 5px;
+}
+
+.mode-menu-options, .setup-menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mode-option, .setup-option {
+    font-size: 11px;
+    color: var(--lcd-pixel-on);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.mode-option:hover, .setup-option:hover {
+    background: rgba(15, 56, 15, 0.2);
+}
+
+.mode-option.selected {
+    background: var(--lcd-pixel-on);
+    color: var(--lcd-bg);
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    :root {
+        --calc-width: 290px;
+        --key-size: 38px;
+    }
+    
+    .calculator {
+        padding: 10px 8px 12px;
+    }
+    
+    .key-row:nth-child(5) .key,
+    .key-row:nth-child(6) .key,
+    .key-row:nth-child(7) .key,
+    .key-row:nth-child(8) .key {
+        width: 42px;
+    }
+}
+
+/* Keyboard focus */
+.key:focus {
+    outline: 2px solid #f5a623;
+    outline-offset: 2px;
+}
+
+/* Shift/Alpha active states */
+.calculator.shift-active .key-orange {
+    box-shadow: 0 0 10px rgba(245, 166, 35, 0.5);
+}
+
+.calculator.alpha-active .key-blue {
+    box-shadow: 0 0 10px rgba(224, 32, 32, 0.5);
+}
+
+/* Fraction display */
+.fraction {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 2px;
+}
+
+.fraction-num, .fraction-den {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.fraction-bar {
+    width: 100%;
+    height: 1px;
+    background: var(--lcd-pixel-on);
+    margin: 2px 0;
+}
+
+/* Root display */
+.root {
+    display: inline-flex;
+    align-items: center;
+}
+
+.root-symbol {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.root-radicand {
+    border-top: 1px solid var(--lcd-pixel-on);
+    padding: 0 3px;
+}
+
+/* Superscript/Subscript */
+.sup {
+    font-size: 10px;
+    vertical-align: super;
+}
+
+.sub {
+    font-size: 10px;
+    vertical-align: sub;
+}
